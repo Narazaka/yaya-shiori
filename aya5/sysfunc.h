@@ -24,7 +24,7 @@
 
 #include <vector>
 
-#include <boost/regex.hpp>	/* boost::regexを使用します */
+#include <regex>
 #define	BOOST_REGEX_STATIC_LINK
 
 #include "globaldef.h"
@@ -52,7 +52,7 @@ protected:
 	CValue	re_pos;						// 正規表現処理結果の詳細情報（一致した位置）
 	CValue	re_len;						// 正規表現処理結果の詳細情報（一致した長さ）
 
-	boost::regex_constants::syntax_option_type re_option; //正規表現オプション
+	std::regex_constants::syntax_option_type re_option; //正規表現オプション
 
 private:
 	CSystemFunction(void);
@@ -256,7 +256,7 @@ protected:
 
 	CValue	RE_SPLIT_CORE(const CValue &arg, yaya::string_t &d, int &l, const yaya::char_t *fncname, std::vector<yaya::string_t> *replace_array, size_t num);
 
-	void	StoreReResultDetails(boost::match_results<yaya::string_t::const_iterator> &result);
+	void	StoreReResultDetails(std::match_results<yaya::string_t::const_iterator> &result);
 	void	ClearReResultDetails(void);
 	void	AppendReResultDetail(const yaya::string_t &str, int pos, int len);
 	void	SetError(int code);
