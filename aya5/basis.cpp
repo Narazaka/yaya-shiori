@@ -585,7 +585,7 @@ void	CBasis::SaveVariable(const yaya::char_t* pName)
 #if defined(WIN32)
 		DeleteFile(s_filestr);
 #else
-		unlink(s_filestr);
+		std::remove(s_filestr);
 #endif
 		free(s_filestr);
 		s_filestr=0;
@@ -599,7 +599,7 @@ void	CBasis::SaveVariable(const yaya::char_t* pName)
 #if defined(WIN32)
 		DeleteFile(s_filestr);
 #else
-		unlink(s_filestr);
+		std::remove(s_filestr);
 #endif
 		free(s_filestr);
 		s_filestr=0;
@@ -1212,7 +1212,7 @@ yaya::global_t	CBasis::ExecuteRequest(yaya::global_t h, long *len, bool is_debug
     CLocalVariable	lvar;
 
     CValue	result;
-	vm.function()[requestindex].Execute(result, arg, lvar);
+	vm.function()[funcpos].Execute(result, arg, lvar);
     
 	// 結果を文字列として取得し、文字コードをMBCSに変換
 	yaya::string_t	res = result.GetValueString();
